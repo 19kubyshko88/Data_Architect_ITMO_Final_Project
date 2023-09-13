@@ -1,6 +1,3 @@
-import datetime
-import os
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -78,7 +75,7 @@ def get_horizontal_volumes(df, price_step: int | float = 1, timeframe: str = '1h
     return all_vols
 
 
-def get_anomalies(data: pd.Series):
+def get_anomalies(data: pd.Series, threshold: float = 3):
     """
     Тест Граббса для поиска аномалий в данных.
     Если предполагается нормальное распределение, то ищем выбросы за пределами 3-сигма.
@@ -88,8 +85,8 @@ def get_anomalies(data: pd.Series):
     mean = np.mean(data)
     std = np.std(data)
 
-    lower_limit = mean - 3 * std
-    upper_limit = mean + 3 * std
+    lower_limit = mean - threshold * std
+    upper_limit = mean + threshold * std
 
     # print("Lower limit:", lower_limit)
     # print("Upper limit:", upper_limit)
