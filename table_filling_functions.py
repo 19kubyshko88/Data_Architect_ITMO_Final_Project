@@ -60,11 +60,7 @@ def split_on_frames(data: pd.DataFrame, path, minute_time_interval='1Min'):
     data - все новые данные обработанные ф-цией prepare_data
     minute_time_interval - на какие таймфреймы разбиваем (в минутах)
 
-
-    return:
-       result - список датафреймов, содержащих сделки за минуту.
-       В result первых два элемента - время начала и конца интервала, третий
-       элемент - сам dataframe.
+    сохраняет каждый фрейм (минуту) в отдельный файл
     """
     # на случай чтения из файла
     data['DATETIME'] = pd.to_datetime(data['DATETIME'], format='%Y%m%d %H%M%S.%f')
